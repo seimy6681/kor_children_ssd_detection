@@ -3,6 +3,23 @@ Korean Children Speech Sound Disorder Detection using ASR
 
 This project aims to develop an effective Automatic Speech Recognition system that generates an accurate transcription of a child's speech to be used to diagnose whether he or she has a Speech Sound Disorder (SSD).
 
+### 데이터셋 위치
+
+## 음성파일
+- 단어 레벨 K_APP/APAC 데이터셋 (709명)
+`
+shared/kochild/original/APAC
+`
+- 발화자 레벨 K_APP/APAC 데이터셋 
+`
+/shared/kochild/kochild/combined
+`
+- 나이 mixing 데이터셋 (augmentation by 5)
+`
+/shared/kochild/kochild/augmented_5
+`
+## CSV 파일
+-
 ## Base ASR Model
 We use the baseline model Wav2Vec2CTC for ASR and aim to improve its Character Error Rate (CER) on our Korean SSD Dataset to leverage its ability to capture mispronunciations in Korean.
 
