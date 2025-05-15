@@ -18,11 +18,13 @@ CUDA_VISIBLE_DEVICES=0 CUDA_LAUNCH_BLOCKING=0 python main.py \
 --asr_mode 'human' \ 
 --train_filename 'r08_APAC_KAPP_25_train.csv' \
 --test_filename 'r08_APAC_KAPP_25_test.csv' \
---num_runs 1 \ (seed 로부터 연속으로 학습할 수)
+--num_runs 1 \ 
 --seed 42 \
 `
+* num_runs : seed 로부터 연속으로 학습할 수
 
-##### 모델 별로 사용되는 loss feature 를 설정해야합니다.
+
+##### 모델 별로 사용되는 loss feature 를 설정해야 합니다.
 
 ### 멀티테스킹 모델 
 - binary multitask (0/1 분류)
