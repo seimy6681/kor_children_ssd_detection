@@ -22,7 +22,7 @@ CUDA_VISIBLE_DEVICES=0 CUDA_LAUNCH_BLOCKING=0 python main.py \
 --seed 42 \
 `
 
-모델 별로 사용되는 loss feature 를 설정
+##### 모델 별로 사용되는 loss feature 를 설정해야합니다.
 
 ### 멀티테스킹 모델 
 - binary multitask (0/1 분류)
