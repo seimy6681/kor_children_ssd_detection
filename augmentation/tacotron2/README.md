@@ -9,7 +9,7 @@ Please see [Blog Post](https://joungheekim.github.io/2021/04/01/code-review/) wr
 ## Checkpoint 위치
 - Word level r08.1_train.csv 로 파인튜닝 된 모델은
 `
-shared/kochild/tacotron2_checkpoints
+shared/kochild/kochild/tacotron2/checkpoint_98000
 `
 에 위치해 있습니다.
 
