@@ -1,0 +1,10 @@
+,speech_file,disease_type,age,gender,subgroup,id,textgrid_text,target_text,human_text,asr_text,new_label
+0,/home/selinawisco/hdd/korean_asr/APAC/일반아동/일반_clear/1_422_1_12_10_0_APAC/1_422_1_12_10_0_APAC_22.wav,0,8,male,TD,422,나무,나무,나무,나아뭐,0
+1,/home/selinawisco/hdd/korean_asr/APAC/일반아동/일반_clear/1_422_1_12_10_0_APAC/1_422_1_12_10_0_APAC_21.wav,0,8,male,TD,422,화장실,화장실,화장실,화장실,0
+2,/home/selinawisco/hdd/korean_asr/APAC/일반아동/일반_clear/1_422_1_12_10_0_APAC/1_422_1_12_10_0_APAC_19.wav,0,8,male,TD,422,우산,우산,우산,우산,0
+3,/home/selinawisco/hdd/korean_asr/APAC/일반아동/일반_clear/1_422_1_12_10_0_APAC/1_422_1_12_10_0_APAC_32.wav,0,8,male,TD,422,거북이,거북이,거북이,거북이,0
+4,/home/selinawisco/hdd/korean_asr/APAC/일반아동/일반_clear/1_422_1_12_10_0_APAC/1_422_1_12_10_0_APAC_15.wav,0,8,male,TD,422,단추,단추,단추,단추,0
+5,/home/selinawisco/hdd/korean_asr/APAC/일반아동/일반_clear/1_422_1_12_10_0_APAC/1_422_1_12_10_0_APAC_34.wav,0,8,male,TD,422,호랑이,호랑이,호랑이,소량이,0
+6,/home/selinawisco/hdd/korean_asr/APAC/일반아동/일반_clear/1_422_1_12_10_0_APAC/1_422_1_12_10_0_APAC_20.wav,0,8,male,TD,422,침대,침대,침대,침대,0
+7,/home/selinawisco/hdd/korean_asr/APAC/일반아동/일반_clear/1_422_1_12_10_0_APAC/1_422_1_12_10_0_APAC_35.wav,0,8,male,TD,422,고래,고래,고래,고래,0
+8,/home/selinawisco/hdd/korean_asr/APAC/일반아동/일반_clear/1_422_1_12_10_0_APAC/1_422_1_12_10_0_APAC_17.wav,0,8,male,TD,422,장갑,장갑,장갑,장갑,0
