@@ -14,4 +14,4 @@
 - 모델 optimizer 는 Adam, 스케줄러는 StepLR을 사용합니다.
 
 ### Validation 및 Inference
-- trainset 에서 타겟 단어 별로 정상음성만 모아서 평균 reference_embedding 을 만든 후, validation set 의 각각 음성을 돌면서 0/1 레이블 프리딕션 할 때 최적인 threshold(이 이상이면 정상 임베딩과 멀어 비정상으로 판단될 수치)을 계산하고, 이 threshold 와 테스트 타임 때 각 오디오와 referene
+- trainset 에서 타겟 단어 별로 정상음성만 모아서 평균 reference_embedding 을 만든 후, validation set 의 각각 음성과 해당하는 타겟단어의 reference embedding 과의 거리를 계산해서 0/1 레이블 프리딕션 할 때 최적인 threshold (이 이상이면 정상 임베딩과 멀어 비정상으로 판단될 수치)을 계산합니다. 이 valildation 에서 얻은 threshold와 테스트셋의 각 오디오와 reference_embedding 과의 거리를 비교하여 프레딕션을 합니다.
