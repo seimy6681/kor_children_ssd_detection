@@ -126,7 +126,19 @@ for idx,(_, row) in enumerate(df.iterrows()):
             df.at[idx, 'pred_by_ASR'] = 1
    
 
-uar = recall_score(df['new_label'], df['asr_human_transcription'], average='macro')
-print(f'{uar=}')
+        
+# UAR 계산
+sensitivity = true_positives / (true_positives + false_negatives) if (true_positives + false_negatives) > 0 else 0
+specificity = true_negatives / (true_negatives + false_positives) if (true_negatives + false_positives) > 0 else 0
+
+uar = (sensitivity + specificity) / 2
+# uar = recall_score(df['new_label'], df['asr_human_transcription'], average='macro') #
+# print(f'{uar=}')
+
+# Output results
+print(f"UAR(ASR): {uar} [{true_positives=}, {true_negatives=}, {false_positives=}, {false_negatives=}]")
+from sklearn.metrics import classification_report
+# df = pd.read_csv('0525_young_42_eval.csv')
+print(classification_report(df['new_label'], df['pred_by_ASR']))
 
 df.to_csv(f'/home/selinawisco/selina_main/asr/whisper-small-hi-45-eval.csv', index=False)
