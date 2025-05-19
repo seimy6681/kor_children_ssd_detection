@@ -2,6 +2,11 @@
 This is modified versrion of NVIDIA Tacotron2, considering korean preprocess method.
 Please see [Blog Post](https://joungheekim.github.io/2021/04/01/code-review/) written in korean for details.
 
+## Reference
+- Full Code : [NVIDIA Tacotron2](https://github.com/JoungheeKim/tacotron2)
+- Korean Preprocess Code : [hccho2 Tacotron2](https://github.com/hccho2/Tacotron2-Wavenet-Korean-TTS)
+
+
 ## Finetuning
 - 실행 방법:
 ```
@@ -13,10 +18,6 @@ Please see [Blog Post](https://joungheekim.github.io/2021/04/01/code-review/) wr
     hparams.py 에서 학습할 때 이용할 모델 파라미터를 수정할 수 있습니다. 
     음성 파일 Generation 할 때의 모델 파라미터와 불러오는 체크포인트의 모델을 학습할때 이용한 파라미터가 동일해야 합니다.
     
-
-## Reference
-- Full Code : [NVIDIA Tacotron2](https://github.com/JoungheeKim/tacotron2)
-- Korean Preprocess Code : [hccho2 Tacotron2](https://github.com/hccho2/Tacotron2-Wavenet-Korean-TTS)
 
 ## Checkpoint 위치
 - Word level r08.1_train.csv 로 파인튜닝 된 모델은 NAS 서버 안
@@ -38,7 +39,7 @@ tacotron2/0.gen_wav_file.py
     `
     (2) 생성할 텍스트 리스트가 포함 된 CSV 파일 경로를 설정해주세요 (생성되는 칼럼 이름은 human_text 로 설정되어 있습니다).
 
-    - 실행 방법
+    - TTS 실행 방법
         ```
         python 0.gen_wav_file.py
         ```
