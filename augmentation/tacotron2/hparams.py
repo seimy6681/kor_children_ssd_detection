@@ -21,8 +21,8 @@ defaults = {
     # Data Parameters             #
     ################################
     'load_mel_from_disk':False,
-    'training_files':'/data/selinawisco/kochild/taco_train_data_clear.txt',
-    'validation_files':'/data/selinawisco/kochild/taco_test_data_clear.txt',
+    'training_files':'children_ssd_detection/augmentation/tacotron2/taco_train_data_clear.txt', # 트레인 파일 경로
+    'validation_files':'.children_ssd_detection/augmentation/tacotron2/taco_test_data_clear.txt', # 테스트 파일 경로
     'text_cleaners':"['korean_cleaners']",  ##한글을 사용하려면 "['korean_cleaners']"   -> str 형태로 입력해야 함
                                             ##영어를 사용하려면 "['english_cleaners']"
     ################################
