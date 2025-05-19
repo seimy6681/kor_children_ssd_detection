@@ -100,7 +100,16 @@ CUDA_VISIBLE_DEVICES=0 CUDA_LAUNCH_BLOCKING=0 python main.py \
       `
 
 
+# Evaluation 방법 
+### inference.py
 
+저장된 모델 체크포인트를 불러와 테스트셋의 있는 human_text를 각각 전사해 전체 텍스트에 대한 평균 CER을 계산하고, 타겟 전사와 비교하여 correct/mispronounced 바이너리 프레딕션을 내려 UAR을 계산합니다.
 
+- MODEL_PATH 를 저장된 모델 경로로 지정합니다.
+- MODEL_TYPE : Evaluation 하려는 모델의 이름을 지정합니다.
+- 실행 결과: CER, UAR(ASR), UAR(AC) 
 
-
+## command
+``` shell
+python inference.py
+```
