@@ -5,7 +5,7 @@ This project aims to develop an effective Automatic Speech Recognition system th
 
 ### 데이터셋 위치
 
-## 음성파일
+## 음성파일 (NAS 서버)
 - 단어 레벨 K_APP/APAC 데이터셋 (709명)
 `
 shared/kochild/original/APAC
@@ -19,7 +19,7 @@ shared/kochild/original/APAC
 /shared/kochild/kochild/augmented_5
 `
 ## CSV 파일
--
+- ~/datasets
 ## Base ASR Model
 We use the baseline model Wav2Vec2CTC for ASR and aim to improve its Character Error Rate (CER) on our Korean SSD Dataset to leverage its ability to capture mispronunciations in Korean.
 
