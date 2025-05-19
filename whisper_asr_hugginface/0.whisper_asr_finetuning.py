@@ -42,6 +42,7 @@ tokenizer = WhisperTokenizer.from_pretrained('openai/whisper-small', language='K
 
 from transformers import WhisperProcessor
 processor = WhisperProcessor.from_pretrained("openai/whisper-small", language="Korean", task="transcribe")
+# processor = WhisperProcessor.from_pretrained("openai/whisper-small", language="Hindi", task="transcribe")
 
 def prepare_dataset(batch):
 
