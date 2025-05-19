@@ -132,6 +132,8 @@ sensitivity = true_positives / (true_positives + false_negatives) if (true_posit
 specificity = true_negatives / (true_negatives + false_positives) if (true_negatives + false_positives) > 0 else 0
 
 uar = (sensitivity + specificity) / 2
+
+# sklearn.metrics 라이브러리 이용해서 계산
 # uar = recall_score(df['new_label'], df['asr_human_transcription'], average='macro') #
 # print(f'{uar=}')
 
