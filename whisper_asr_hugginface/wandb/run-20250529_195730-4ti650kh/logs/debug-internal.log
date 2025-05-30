@@ -1,0 +1,18 @@
+{"time":"2025-05-29T19:57:30.10460494+09:00","level":"INFO","msg":"using version","core version":"0.18.1"}
+{"time":"2025-05-29T19:57:30.104621192+09:00","level":"INFO","msg":"created symlink","path":"/home/selinawisco/children_ssd_detection/whisper_asr_hugginface/wandb/run-20250529_195730-4ti650kh/logs/debug-core.log"}
+{"time":"2025-05-29T19:57:30.104659587+09:00","level":"INFO","msg":"using version","core version":"0.18.1"}
+{"time":"2025-05-29T19:57:30.104662091+09:00","level":"INFO","msg":"created symlink","path":"/home/selinawisco/children_ssd_detection/whisper_asr_hugginface/wandb/run-20250529_195730-4ti650kh/logs/debug-core.log"}
+{"time":"2025-05-29T19:57:30.10704068+09:00","level":"INFO","msg":"created new stream","id":"4ti650kh"}
+{"time":"2025-05-29T19:57:30.107053956+09:00","level":"INFO","msg":"stream: started","id":"4ti650kh"}
+{"time":"2025-05-29T19:57:30.107065148+09:00","level":"INFO","msg":"handler: started","stream_id":{"value":"4ti650kh"}}
+{"time":"2025-05-29T19:57:30.107083984+09:00","level":"INFO","msg":"sender: started","stream_id":{"value":"4ti650kh"}}
+{"time":"2025-05-29T19:57:30.107094845+09:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"4ti650kh"}}
+{"time":"2025-05-29T19:57:30.456596426+09:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-05-29T19:57:30.458155173+09:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-29T20:02:33.482442243+09:00","level":"INFO","msg":"stream: closing","id":"4ti650kh"}
+{"time":"2025-05-29T20:02:33.482475257+09:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-29T20:02:33.482681227+09:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-29T20:02:36.163019527+09:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"4ti650kh"}}
+{"time":"2025-05-29T20:02:36.163066278+09:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"4ti650kh"}}
+{"time":"2025-05-29T20:02:36.163076929+09:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"4ti650kh"}}
+{"time":"2025-05-29T20:02:36.163133158+09:00","level":"INFO","msg":"stream: closed","id":"4ti650kh"}

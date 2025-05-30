@@ -10,21 +10,25 @@ from sklearn.metrics import recall_score
 from transformers import WhisperForConditionalGeneration
 from transformers import WhisperProcessor
 from sklearn.metrics import recall_score
+import hangul_jamo
 
 # 테스트 csv 파일 로딩
-df = pd.read_csv('/home/selinawisco/hdd/korean_asr/r08.1_test.csv')
+TEST_FILE = '/data/selinawisco/kochild/nas_data/five_fold_datasets/test_fold_0.csv'
+df = pd.read_csv(TEST_FILE)
+df=df.rename(columns={"speech_file":"audio"})
 
 # 학습한 ASR whisper 모델 checkpoint 불러오기
-MODEL_PATH = f"/home/selinawisco/selina_main/asr/whisper-small-hi-45"
+MODEL_PATH = f"/data/selinawisco/whisper_finetuning_asr/whisper-large-v3-turbo-42"
 
 # CUSTOMIZE ------------------------------------------------------------
 MODE = 'human'  # 'human'
-TEST_FILE = '/home/selinawisco/sel-hub/asr/r08.1_test.csv'
 SEED = 45
 # ----------------------------------------------------------------------
 TARGET_COL_NAME = f'{MODE}_text_jamo'
 PRED_COL_NAME = f'asr_{MODE}_transcription'
 WORD_CER_COL_NAME = f'word_{MODE}_CER'
+
+os.environ["CUDA_VISIBLE_DEVICES"] = "1" 
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -143,4 +147,4 @@ from sklearn.metrics import classification_report
 # df = pd.read_csv('0525_young_42_eval.csv')
 print(classification_report(df['new_label'], df['pred_by_ASR']))
 
-df.to_csv(f'/home/selinawisco/selina_main/asr/whisper-small-hi-45-eval.csv', index=False)
+# df.to_csv(f'/home/selinawisco/selina_main/asr/whisper-large-v3-turbo-42-eval.csv', index=False)
