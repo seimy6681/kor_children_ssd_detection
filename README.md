@@ -10,5 +10,6 @@
 ### whisper_asr_huggingface
 - Whisper ASR finetuning 스크립트 `0.whisper_asr_finetuning.py`
 - Whisper ASR inference (CER & UAR 계산) 스크립트 `0.whisper_asr_transcribe.py`
+
 ### datasets
 - csv 데이터셋
