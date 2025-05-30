@@ -216,6 +216,7 @@ for seed in range(42, 42 + 1):
         greater_is_better=False,
         push_to_hub=False,
         remove_unused_columns=False,
+        predict_with_generate=False,
         report_to=["wandb"]
     )
 
