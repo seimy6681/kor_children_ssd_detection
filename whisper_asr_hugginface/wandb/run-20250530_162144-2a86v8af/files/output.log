@@ -1,0 +1,27 @@
+/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/accelerate/accelerator.py:451: FutureWarning: Passing the following arguments to `Accelerator` is deprecated and will be removed in version 1.0 of Accelerate: dict_keys(['dispatch_batches', 'split_batches', 'even_batches', 'use_seedable_sampler']). Please pass an `accelerate.DataLoaderConfiguration` instead:
+dataloader_config = DataLoaderConfiguration(dispatch_batches=None, split_batches=False, even_batches=True, use_seedable_sampler=True)
+  warnings.warn(
+  0%|▎                                                                                           | 20/5000 [00:23<35:42,  2.32it/s]Traceback (most recent call last):
+  File "/home/selinawisco/children_ssd_detection/whisper_asr_hugginface/0.multitask_whisper_asr_finetuning.py", line 236, in <module>
+    trainer.train()
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/trainer.py", line 1624, in train
+    return inner_training_loop(
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/trainer.py", line 2029, in _inner_training_loop
+    self._maybe_log_save_evaluate(tr_loss, grad_norm, model, trial, epoch, ignore_keys_for_eval)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/trainer.py", line 2412, in _maybe_log_save_evaluate
+    metrics = self.evaluate(ignore_keys=ignore_keys_for_eval)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/trainer_seq2seq.py", line 166, in evaluate
+    return super().evaluate(eval_dataset, ignore_keys=ignore_keys, metric_key_prefix=metric_key_prefix)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/trainer.py", line 3229, in evaluate
+    output = eval_loop(
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/trainer.py", line 3444, in evaluation_loop
+    preds_host = logits if preds_host is None else nested_concat(preds_host, logits, padding_index=-100)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/trainer_pt_utils.py", line 123, in nested_concat
+    return type(tensors)(nested_concat(t, n, padding_index=padding_index) for t, n in zip(tensors, new_tensors))
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/trainer_pt_utils.py", line 123, in <genexpr>
+    return type(tensors)(nested_concat(t, n, padding_index=padding_index) for t, n in zip(tensors, new_tensors))
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/trainer_pt_utils.py", line 125, in nested_concat
+    return torch_pad_and_concatenate(tensors, new_tensors, padding_index=padding_index)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/trainer_pt_utils.py", line 90, in torch_pad_and_concatenate
+    result = tensor1.new_full(new_shape, padding_index)
+KeyboardInterrupt

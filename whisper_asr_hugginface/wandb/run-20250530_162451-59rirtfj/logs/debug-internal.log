@@ -1,0 +1,18 @@
+{"time":"2025-05-30T16:24:51.983265536+09:00","level":"INFO","msg":"using version","core version":"0.18.1"}
+{"time":"2025-05-30T16:24:51.983278973+09:00","level":"INFO","msg":"created symlink","path":"/home/selinawisco/children_ssd_detection/whisper_asr_hugginface/wandb/run-20250530_162451-59rirtfj/logs/debug-core.log"}
+{"time":"2025-05-30T16:24:51.983310454+09:00","level":"INFO","msg":"using version","core version":"0.18.1"}
+{"time":"2025-05-30T16:24:51.98331311+09:00","level":"INFO","msg":"created symlink","path":"/home/selinawisco/children_ssd_detection/whisper_asr_hugginface/wandb/run-20250530_162451-59rirtfj/logs/debug-core.log"}
+{"time":"2025-05-30T16:24:51.985378328+09:00","level":"INFO","msg":"created new stream","id":"59rirtfj"}
+{"time":"2025-05-30T16:24:51.985392505+09:00","level":"INFO","msg":"stream: started","id":"59rirtfj"}
+{"time":"2025-05-30T16:24:51.985404869+09:00","level":"INFO","msg":"handler: started","stream_id":{"value":"59rirtfj"}}
+{"time":"2025-05-30T16:24:51.98544583+09:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"59rirtfj"}}
+{"time":"2025-05-30T16:24:51.985437173+09:00","level":"INFO","msg":"sender: started","stream_id":{"value":"59rirtfj"}}
+{"time":"2025-05-30T16:24:52.366920664+09:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-05-30T16:24:52.368241136+09:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-30T16:42:55.358910785+09:00","level":"INFO","msg":"stream: closing","id":"59rirtfj"}
+{"time":"2025-05-30T16:42:55.358947857+09:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-30T16:42:55.359187179+09:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-05-30T16:42:56.518230375+09:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"59rirtfj"}}
+{"time":"2025-05-30T16:42:56.518281324+09:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"59rirtfj"}}
+{"time":"2025-05-30T16:42:56.51827413+09:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"59rirtfj"}}
+{"time":"2025-05-30T16:42:56.518375125+09:00","level":"INFO","msg":"stream: closed","id":"59rirtfj"}

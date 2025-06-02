@@ -1,0 +1,15 @@
+/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/accelerate/accelerator.py:451: FutureWarning: Passing the following arguments to `Accelerator` is deprecated and will be removed in version 1.0 of Accelerate: dict_keys(['dispatch_batches', 'split_batches', 'even_batches', 'use_seedable_sampler']). Please pass an `accelerate.DataLoaderConfiguration` instead:
+dataloader_config = DataLoaderConfiguration(dispatch_batches=None, split_batches=False, even_batches=True, use_seedable_sampler=True)
+  warnings.warn(
+  0%|                                                                                                                          | 0/5000 [00:00<?, ?it/s]/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '
+  1%|█▏                                                                                                             | 52/5000 [01:32<2:22:04,  1.72s/it]Traceback (most recent call last):
+{'loss': 1.704, 'grad_norm': 943677.1875, 'learning_rate': 1.4999999999999999e-05, 'epoch': 0.05}
+{'loss': 0.468, 'grad_norm': 725174.375, 'learning_rate': 2.9999999999999997e-05, 'epoch': 0.09}
+  File "/home/selinawisco/children_ssd_detection/whisper_asr_hugginface/0.multitask_whisper_asr_finetuning.py", line 244, in <module>
+    trainer.train()
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/trainer.py", line 1624, in train
+    return inner_training_loop(
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/trainer.py", line 1966, in _inner_training_loop
+    and (torch.isnan(tr_loss_step) or torch.isinf(tr_loss_step))
+KeyboardInterrupt

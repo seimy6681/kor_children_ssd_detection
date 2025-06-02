@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/home/selinawisco/children_ssd_detection/whisper_asr_hugginface/0.multitask_whisper_asr_finetuning.py", line 195, in <module>
+    training_args = Seq2SeqTrainingArguments(
+  File "<string>", line 128, in __init__
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/training_args.py", line 1442, in __post_init__
+    raise ValueError(
+ValueError: --load_best_model_at_end requires the saving steps to be a round multiple of the evaluation steps, but found 20, which is not a round multiple of 1000.

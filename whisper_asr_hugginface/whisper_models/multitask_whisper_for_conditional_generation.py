@@ -71,11 +71,11 @@ class MultitaskWhisperForConditionalGeneration(WhisperForConditionalGeneration):
     generation_config_class = GenerationConfig
     def __init__(self, config: WhisperConfig):
         super().__init__(config)
-        self.model = WhisperModel(config)
-        self.proj_out = nn.Linear(config.d_model, config.vocab_size, bias=False)
+        # self.model = WhisperModel(config)
+        # self.proj_out = nn.Linear(config.d_model, config.vocab_size, bias=False)
 
-        # Initialize weights and apply final processing
-        self.post_init()
+        # # Initialize weights and apply final processing
+        # self.post_init()
 
         # Initialize the binary classifier for multitask learning
         self.binary_classifier = nn.Sequential(
@@ -190,21 +190,26 @@ class MultitaskWhisperForConditionalGeneration(WhisperForConditionalGeneration):
         )
         lm_logits = self.proj_out(outputs[0])
         
+        binary_logits=None
+        if attention_mask is not None:
+            # (1) get the output_hidden_states for binary classification
+            encoder_hidden = outputs.encoder_last_hidden_state # using the last encoder layer output # (B, T, D), mean pooling across time steps (B, T, D)
+            # (2) grab attention_mask to zero out padding tokens timesteps
+            mask = attention_mask[:, ::2] # grab every 2nd input frame to match whisper downsampling in the whisper's encoder conv1 stride of 2
+            mask = mask.unsqueeze(-1).type_as(encoder_hidden) # (B, T, 1)
+            masked_hidden = encoder_hidden * mask # (B, T, D)
+            # (3) add hidden across all time steps
+            sum_hidden = masked_hidden.sum(dim=1) # (B, D)
+            # (4) get the number of valid tokens ber sample (length)
+            lengths = mask.sum(dim=1).clamp(min=1) # length of sample
+            # (5) divide each sample's summed hidden states by the length
+            encoder_output = sum_hidden / lengths # (B,D)
 
-        # (1) get the output_hidden_states for binary classification
-        encoder_hidden = outputs.encoder_last_hidden_state # using the last encoder layer output # (B, T, D), mean pooling across time steps (B, T, D)
-        # (2) grab attention_mask to zero out padding tokens timesteps
-        mask = attention_mask[:, ::2] # grab every 2nd input frame to match whisper downsampling in the whisper's encoder conv1 stride of 2
-        mask = mask.unsqueeze(-1).type_as(encoder_hidden) # (B, T, 1)
-        masked_hidden = encoder_hidden * mask # (B, T, D)
-        # (3) add hidden across all time steps
-        sum_hidden = masked_hidden.sum(dim=1) # (B, D)
-        # (4) get the number of valid tokens ber sample (length)
-        lengths = mask.sum(dim=1).clamp(min=1) # length of sample
-        # (5) divide each sample's summed hidden states by the length
-        encoder_output = sum_hidden / lengths # (B,D)
-        # (6) pass it through the classifier
-        binary_logits = self.binary_classifier(encoder_output).squeeze(-1)
+            # encoder_output = encoder_hidden[:,0,:]
+            # (6) pass it through the classifier
+            encoder_used = encoder_output.detach() if not self.training else encoder_output
+            binary_logits = self.binary_classifier(encoder_used).squeeze(-1)
+            # binary_logits = self.binary_classifier(encoder_output).squeeze(-1)
 
         loss = None
         if labels is not None:
@@ -223,8 +228,10 @@ class MultitaskWhisperForConditionalGeneration(WhisperForConditionalGeneration):
             binary_loss = loss_fct_binary(binary_logits, binary_labels)
 
         # (8) calculate the total multitask loss
-        total_loss = loss + 0.3 * binary_loss
-
+        if labels is not None and binary_labels is not None:
+            total_loss = loss + 0.3 * binary_loss
+        # print(total_loss)
+        # total_loss = loss
         if not return_dict:
             output = (lm_logits, binary_logits) + outputs[1:]
             return ((total_loss,) + output) if total_loss is not None else output

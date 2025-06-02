@@ -1,0 +1,112 @@
+/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/accelerate/accelerator.py:451: FutureWarning: Passing the following arguments to `Accelerator` is deprecated and will be removed in version 1.0 of Accelerate: dict_keys(['dispatch_batches', 'split_batches', 'even_batches', 'use_seedable_sampler']). Please pass an `accelerate.DataLoaderConfiguration` instead:
+dataloader_config = DataLoaderConfiguration(dispatch_batches=None, split_batches=False, even_batches=True, use_seedable_sampler=True)
+  warnings.warn(
+tensor(3.0258, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(3.3046, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(3.3413, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(2.9815, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(3.1125, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(3.3622, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(3.1632, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(3.3273, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(3.2196, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(3.1605, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(3.0974, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(3.2530, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(3.2602, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(3.1252, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(3.2273, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(2.9569, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(2.8737, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(3.0744, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(2.9793, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(2.9816, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(2.8350, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(2.9195, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(2.6828, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(2.5978, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(2.7203, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(2.5302, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(2.3493, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(2.4237, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(2.2746, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(2.2087, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(1.9723, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(2.0660, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(2.0695, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(1.8857, device='cuda:1', grad_fn=<AddBackward0>)
+tensor(1.8419, device='cuda:1', grad_fn=<AddBackward0>)
+Traceback (most recent call last):
+  File "/home/selinawisco/children_ssd_detection/whisper_asr_hugginface/0.multitask_whisper_asr_finetuning.py", line 237, in <module>
+    trainer.train()
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/trainer.py", line 1624, in train
+    return inner_training_loop(
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/trainer.py", line 1961, in _inner_training_loop
+    tr_loss_step = self.training_step(model, inputs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/trainer.py", line 2902, in training_step
+    loss = self.compute_loss(model, inputs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/trainer.py", line 2925, in compute_loss
+    outputs = model(**inputs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/accelerate/utils/operations.py", line 819, in forward
+    return model_forward(*args, **kwargs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/accelerate/utils/operations.py", line 807, in __call__
+    return convert_to_fp32(self.model_forward(*args, **kwargs))
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/amp/autocast_mode.py", line 16, in decorate_autocast
+    return func(*args, **kwargs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 849, in forward
+    output = self._fsdp_wrapped_module(*args, **kwargs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/accelerate/utils/operations.py", line 819, in forward
+    return model_forward(*args, **kwargs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/accelerate/utils/operations.py", line 807, in __call__
+    return convert_to_fp32(self.model_forward(*args, **kwargs))
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/amp/autocast_mode.py", line 16, in decorate_autocast
+    return func(*args, **kwargs)
+  File "/home/selinawisco/children_ssd_detection/whisper_asr_hugginface/whisper_models/multitask_whisper_for_conditional_generation.py", line 174, in forward
+    outputs = self.model(
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/models/whisper/modeling_whisper.py", line 1628, in forward
+    decoder_outputs = self.decoder(
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/models/whisper/modeling_whisper.py", line 1444, in forward
+    layer_outputs = decoder_layer(
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/distributed/fsdp/fully_sharded_data_parallel.py", line 835, in forward
+    args, kwargs = _pre_forward(
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/distributed/fsdp/_runtime_utils.py", line 380, in _pre_forward
+    unshard_fn(state, handle)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/distributed/fsdp/_runtime_utils.py", line 421, in _pre_forward_unshard
+    _prefetch_handle(state, handle, _PrefetchMode.FORWARD)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/distributed/fsdp/_runtime_utils.py", line 1177, in _prefetch_handle
+    _unshard(state, handle, state._unshard_stream, state._pre_unshard_stream)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/distributed/fsdp/_runtime_utils.py", line 288, in _unshard
+    ran_pre_unshard = handle.pre_unshard()
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/distributed/fsdp/_flat_param.py", line 1243, in pre_unshard
+    ret = self._writeback_orig_params()
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/distributed/fsdp/_flat_param.py", line 2283, in _writeback_orig_params
+    or not _same_storage_as_data_ptr(
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/distributed/fsdp/_common_utils.py", line 563, in _same_storage_as_data_ptr
+    return x._typed_storage()._data_ptr() == data_ptr
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/_tensor.py", line 243, in _typed_storage
+    return torch.TypedStorage(
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/storage.py", line 570, in __init__
+    def __init__(self, *args, device=None, dtype=None, wrap_storage=None, _internal=False):
+KeyboardInterrupt

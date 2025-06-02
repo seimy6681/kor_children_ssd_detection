@@ -17,7 +17,7 @@ debugpy.wait_for_client()
 # print('break on this line')
 
 num_runs = 1 # 연속으로 학습할 수
-os.environ["CUDA_VISIBLE_DEVICES"] = "0" 
+os.environ["CUDA_VISIBLE_DEVICES"] = "0,1" 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
@@ -52,6 +52,7 @@ from transformers import WhisperProcessor
 processor = WhisperProcessor.from_pretrained("openai/whisper-small", language="Korean", task="transcribe")
 # processor = WhisperProcessor.from_pretrained("openai/whisper-large-v3-turbo", language="Korean", task="transcribe")
 # processor = WhisperProcessor.from_pretrained("openai/whisper-small", language="Hindi", task="transcribe")
+# processor.feature_extractor.chunk_length = None  # <-- disable default 30s padding
 
 def prepare_dataset(batch):
 
@@ -59,8 +60,12 @@ def prepare_dataset(batch):
     features = feature_extractor(
         audio['array'], 
         sampling_rate=audio['sampling_rate'],
-        return_attention_mask=True # add attention_mask so it can be accessed for binary classifier
+        return_attention_mask=True, # add attention_mask so it can be accessed for binary classifier,
+        # padding="max_length",
+        # truncation=True,
+        # max_length=600,
     )
+    
     batch['input_features']= features.input_features[0]
     batch['attention_mask']= features.attention_mask[0]
     
@@ -86,6 +91,7 @@ model.generation_config = GenerationConfig.from_pretrained("openai/whisper-small
 model.generation_config.language = "korean"
 model.generation_config.task = "transcribe"
 model.generation_config.forced_decoder_ids = None
+# model = torch.nn.DataParallel(model)
 
 from dataclasses import dataclass
 from typing import Any, Dict, List, Union
@@ -201,22 +207,23 @@ for seed in range(42, 42 + 1):
         gradient_checkpointing=False,
         fp16=True,
         evaluation_strategy="steps",
-        per_device_eval_batch_size=2,
+        per_device_eval_batch_size=8,
         # per_device_eval_batch_size=8,
         predict_with_generate=True,
         generation_max_length=225,
         save_steps=1000,
-        eval_steps=20,
-        # eval_steps=1000,
+        # save_steps=1000,
+        # eval_steps=5000,
+        eval_steps=1000,
         logging_steps=25,
         dataloader_num_workers=4,
         # report_to=["tensorboard"],
+        # load_best_model_at_end=False,
         load_best_model_at_end=True,
         metric_for_best_model="cer",
         greater_is_better=False,
         push_to_hub=False,
         remove_unused_columns=False,
-        predict_with_generate=False,
         report_to=["wandb"]
     )
 

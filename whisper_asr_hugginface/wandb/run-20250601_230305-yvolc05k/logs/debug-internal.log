@@ -1,0 +1,18 @@
+{"time":"2025-06-01T23:03:05.45851618+09:00","level":"INFO","msg":"using version","core version":"0.18.1"}
+{"time":"2025-06-01T23:03:05.458535507+09:00","level":"INFO","msg":"created symlink","path":"/home/selinawisco/children_ssd_detection/whisper_asr_hugginface/wandb/run-20250601_230305-yvolc05k/logs/debug-core.log"}
+{"time":"2025-06-01T23:03:05.458595915+09:00","level":"INFO","msg":"using version","core version":"0.18.1"}
+{"time":"2025-06-01T23:03:05.458600924+09:00","level":"INFO","msg":"created symlink","path":"/home/selinawisco/children_ssd_detection/whisper_asr_hugginface/wandb/run-20250601_230305-yvolc05k/logs/debug-core.log"}
+{"time":"2025-06-01T23:03:05.462349368+09:00","level":"INFO","msg":"created new stream","id":"yvolc05k"}
+{"time":"2025-06-01T23:03:05.462369837+09:00","level":"INFO","msg":"stream: started","id":"yvolc05k"}
+{"time":"2025-06-01T23:03:05.462399255+09:00","level":"INFO","msg":"sender: started","stream_id":{"value":"yvolc05k"}}
+{"time":"2025-06-01T23:03:05.46241742+09:00","level":"INFO","msg":"handler: started","stream_id":{"value":"yvolc05k"}}
+{"time":"2025-06-01T23:03:05.462382983+09:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"yvolc05k"}}
+{"time":"2025-06-01T23:03:05.960112795+09:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-06-01T23:03:05.96159253+09:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-01T23:03:06.111024831+09:00","level":"INFO","msg":"stream: closing","id":"yvolc05k"}
+{"time":"2025-06-01T23:03:06.111067083+09:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-01T23:03:06.111322209+09:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-01T23:03:11.850926892+09:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"yvolc05k"}}
+{"time":"2025-06-01T23:03:11.851002148+09:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"yvolc05k"}}
+{"time":"2025-06-01T23:03:11.850998261+09:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"yvolc05k"}}
+{"time":"2025-06-01T23:03:11.85110573+09:00","level":"INFO","msg":"stream: closed","id":"yvolc05k"}

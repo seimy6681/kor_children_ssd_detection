@@ -7,9 +7,9 @@ from datasets import Audio
 import debugpy
 import wandb
 
-# debugpy.listen(5678)
-# print("waiting for debugger")
-# debugpy.wait_for_client()
+debugpy.listen(5678)
+print("waiting for debugger")
+debugpy.wait_for_client()
 # debugpy.breakpoint()
 # print('break on this line')
 

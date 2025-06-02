@@ -1,0 +1,49 @@
+/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/accelerate/accelerator.py:451: FutureWarning: Passing the following arguments to `Accelerator` is deprecated and will be removed in version 1.0 of Accelerate: dict_keys(['dispatch_batches', 'split_batches', 'even_batches', 'use_seedable_sampler']). Please pass an `accelerate.DataLoaderConfiguration` instead:
+dataloader_config = DataLoaderConfiguration(dispatch_batches=None, split_batches=False, even_batches=True, use_seedable_sampler=True)
+  warnings.warn(
+  0%|                                                                                                            | 0/5000 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "/home/selinawisco/children_ssd_detection/whisper_asr_hugginface/0.multitask_whisper_asr_finetuning.py", line 242, in <module>
+    trainer.train()
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/trainer.py", line 1624, in train
+    return inner_training_loop(
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/trainer.py", line 1961, in _inner_training_loop
+    tr_loss_step = self.training_step(model, inputs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/trainer.py", line 2902, in training_step
+    loss = self.compute_loss(model, inputs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/trainer.py", line 2925, in compute_loss
+    outputs = model(**inputs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/parallel/data_parallel.py", line 185, in forward
+    outputs = self.parallel_apply(replicas, inputs, module_kwargs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/parallel/data_parallel.py", line 200, in parallel_apply
+    return parallel_apply(replicas, inputs, kwargs, self.device_ids[:len(replicas)])
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/parallel/parallel_apply.py", line 108, in parallel_apply
+    output.reraise()
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/_utils.py", line 722, in reraise
+    raise exception
+ValueError: Caught ValueError in replica 0 on device 0.
+Original Traceback (most recent call last):
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/parallel/parallel_apply.py", line 83, in _worker
+    output = module(*input, **kwargs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/selinawisco/children_ssd_detection/whisper_asr_hugginface/whisper_models/multitask_whisper_for_conditional_generation.py", line 174, in forward
+    outputs = self.model(
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/models/whisper/modeling_whisper.py", line 1612, in forward
+    encoder_outputs = self.encoder(
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/models/whisper/modeling_whisper.py", line 1166, in forward
+    raise ValueError(
+ValueError: Whisper expects the mel input features to be of length 3000, but found 3. Make sure to pad the input mel features to 3000.

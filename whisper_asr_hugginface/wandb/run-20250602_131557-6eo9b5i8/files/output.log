@@ -1,0 +1,47 @@
+/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/accelerate/accelerator.py:451: FutureWarning: Passing the following arguments to `Accelerator` is deprecated and will be removed in version 1.0 of Accelerate: dict_keys(['dispatch_batches', 'split_batches', 'even_batches', 'use_seedable_sampler']). Please pass an `accelerate.DataLoaderConfiguration` instead:
+dataloader_config = DataLoaderConfiguration(dispatch_batches=None, split_batches=False, even_batches=True, use_seedable_sampler=True)
+  warnings.warn(
+  0%|                                                    | 0/5000 [00:00<?, ?it/s]/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '
+/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '
+  0%|▏                                        | 18/5000 [00:58<2:25:55,  1.76s/it]/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '
+  0%|▏                                        | 20/5000 [01:04<3:19:16,  2.40s/it]/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '
+                                                                                  /home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all ' [00:00<?, ?it/s]
+                                                                                  /home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '13:03,  4.34s/it]
+                                                                                  /home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '00:05,  3.57s/it]
+  0%|▏                                        | 20/5000 [18:30<3:19:16,  2.40s/it]/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/nn/parallel/_functions.py:68: UserWarning: Was asked to gather along dimension 0, but all input tensors were scalars; will instead unsqueeze and return a vector.
+  warnings.warn('Was asked to gather along dimension 0, but all '                                       
+{'eval_loss': 0.88442063331604, 'eval_cer': 0.6466828971393792, 'eval_uar': 0.5391427503215953, 'eval_recall_0': 0.5373018940858136, 'eval_recall_1': 0.5409836065573771, 'eval_runtime': 1045.6459, 'eval_samples_per_second': 3.874, 'eval_steps_per_second': 0.969, 'epoch': 0.04}
+  1%|▎                                        | 40/5000 [19:04<2:52:15,  2.08s/it]Traceback (most recent call last):
+{'loss': 1.704, 'grad_norm': 943199.6875, 'learning_rate': 1.4999999999999999e-05, 'epoch': 0.05}
+  File "/home/selinawisco/children_ssd_detection/whisper_asr_hugginface/0.multitask_whisper_asr_finetuning.py", line 244, in <module>
+    trainer.train()
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/trainer.py", line 1624, in train
+    return inner_training_loop(
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/trainer.py", line 2029, in _inner_training_loop
+    self._maybe_log_save_evaluate(tr_loss, grad_norm, model, trial, epoch, ignore_keys_for_eval)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/trainer.py", line 2412, in _maybe_log_save_evaluate
+    metrics = self.evaluate(ignore_keys=ignore_keys_for_eval)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/trainer_seq2seq.py", line 166, in evaluate
+    return super().evaluate(eval_dataset, ignore_keys=ignore_keys, metric_key_prefix=metric_key_prefix)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/trainer.py", line 3229, in evaluate
+    output = eval_loop(
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/trainer.py", line 3418, in evaluation_loop
+    loss, logits, labels = self.prediction_step(model, inputs, prediction_loss_only, ignore_keys=ignore_keys)
+  File "/home/selinawisco/children_ssd_detection/whisper_asr_hugginface/multitask_trainer.py", line 49, in prediction_step
+    generated_tokens = self.model.generate(
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/models/whisper/generation_whisper.py", line 582, in generate
+    outputs = super().generate(
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 115, in decorate_context
+    return func(*args, **kwargs)
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/generation/utils.py", line 1544, in generate
+    return self.greedy_search(
+  File "/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/transformers/generation/utils.py", line 2357, in greedy_search
+    eos_token_id_tensor = torch.tensor(eos_token_id).to(input_ids.device) if eos_token_id is not None else None
+KeyboardInterrupt

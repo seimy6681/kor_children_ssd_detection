@@ -1,0 +1,14 @@
+{"time":"2025-05-30T17:10:58.692555751+09:00","level":"INFO","msg":"using version","core version":"0.18.1"}
+{"time":"2025-05-30T17:10:58.692570129+09:00","level":"INFO","msg":"created symlink","path":"/home/selinawisco/children_ssd_detection/whisper_asr_hugginface/wandb/run-20250530_171058-dvx4krdd/logs/debug-core.log"}
+{"time":"2025-05-30T17:10:58.692613122+09:00","level":"INFO","msg":"using version","core version":"0.18.1"}
+{"time":"2025-05-30T17:10:58.692615467+09:00","level":"INFO","msg":"created symlink","path":"/home/selinawisco/children_ssd_detection/whisper_asr_hugginface/wandb/run-20250530_171058-dvx4krdd/logs/debug-core.log"}
+{"time":"2025-05-30T17:10:58.694846756+09:00","level":"INFO","msg":"created new stream","id":"dvx4krdd"}
+{"time":"2025-05-30T17:10:58.694861184+09:00","level":"INFO","msg":"stream: started","id":"dvx4krdd"}
+{"time":"2025-05-30T17:10:58.694875702+09:00","level":"INFO","msg":"handler: started","stream_id":{"value":"dvx4krdd"}}
+{"time":"2025-05-30T17:10:58.694912102+09:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"dvx4krdd"}}
+{"time":"2025-05-30T17:10:58.694904077+09:00","level":"INFO","msg":"sender: started","stream_id":{"value":"dvx4krdd"}}
+{"time":"2025-05-30T17:10:59.069594296+09:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-05-30T17:10:59.070650671+09:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-05-30T17:21:54.405797848+09:00","level":"INFO","msg":"stream: closing","id":"dvx4krdd"}
+{"time":"2025-05-30T17:21:54.405831874+09:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-05-30T17:21:54.406386851+09:00","level":"INFO","msg":"Stopped system monitor"}

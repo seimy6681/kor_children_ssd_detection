@@ -1,0 +1,18 @@
+{"time":"2025-06-02T12:01:00.641325904+09:00","level":"INFO","msg":"using version","core version":"0.18.1"}
+{"time":"2025-06-02T12:01:00.641340693+09:00","level":"INFO","msg":"created symlink","path":"/home/selinawisco/children_ssd_detection/whisper_asr_hugginface/wandb/run-20250602_120100-6ok1torq/logs/debug-core.log"}
+{"time":"2025-06-02T12:01:00.641385921+09:00","level":"INFO","msg":"using version","core version":"0.18.1"}
+{"time":"2025-06-02T12:01:00.641388456+09:00","level":"INFO","msg":"created symlink","path":"/home/selinawisco/children_ssd_detection/whisper_asr_hugginface/wandb/run-20250602_120100-6ok1torq/logs/debug-core.log"}
+{"time":"2025-06-02T12:01:00.643680217+09:00","level":"INFO","msg":"created new stream","id":"6ok1torq"}
+{"time":"2025-06-02T12:01:00.643693753+09:00","level":"INFO","msg":"stream: started","id":"6ok1torq"}
+{"time":"2025-06-02T12:01:00.643717419+09:00","level":"INFO","msg":"handler: started","stream_id":{"value":"6ok1torq"}}
+{"time":"2025-06-02T12:01:00.643736977+09:00","level":"INFO","msg":"sender: started","stream_id":{"value":"6ok1torq"}}
+{"time":"2025-06-02T12:01:00.643760072+09:00","level":"INFO","msg":"writer: Do: started","stream_id":{"value":"6ok1torq"}}
+{"time":"2025-06-02T12:01:01.062524636+09:00","level":"INFO","msg":"wandb-core","!BADKEY":null}
+{"time":"2025-06-02T12:01:01.063399365+09:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-06-02T12:02:35.984305029+09:00","level":"INFO","msg":"stream: closing","id":"6ok1torq"}
+{"time":"2025-06-02T12:02:35.984330489+09:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-06-02T12:02:35.98453205+09:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-06-02T12:02:39.21094503+09:00","level":"INFO","msg":"handler: closed","stream_id":{"value":"6ok1torq"}}
+{"time":"2025-06-02T12:02:39.211011359+09:00","level":"INFO","msg":"sender: closed","stream_id":{"value":"6ok1torq"}}
+{"time":"2025-06-02T12:02:39.210999997+09:00","level":"INFO","msg":"writer: Close: closed","stream_id":{"value":"6ok1torq"}}
+{"time":"2025-06-02T12:02:39.211175307+09:00","level":"INFO","msg":"stream: closed","id":"6ok1torq"}
