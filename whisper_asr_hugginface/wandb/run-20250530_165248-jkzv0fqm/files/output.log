@@ -1,5 +1,0 @@
-/home/selinawisco/anaconda3/envs/asr/lib/python3.10/site-packages/accelerate/accelerator.py:451: FutureWarning: Passing the following arguments to `Accelerator` is deprecated and will be removed in version 1.0 of Accelerate: dict_keys(['dispatch_batches', 'split_batches', 'even_batches', 'use_seedable_sampler']). Please pass an `accelerate.DataLoaderConfiguration` instead:
-dataloader_config = DataLoaderConfiguration(dispatch_batches=None, split_batches=False, even_batches=True, use_seedable_sampler=True)
-  warnings.warn(
-  0%|▎                                                                                           | 20/5000 [00:15<54:52,  1.51it/s]
- 96%|███████████████████████████████████████████████████████████████████████████████████████▌   | 975/1013 [06:21<00:29,  1.28it/s]
