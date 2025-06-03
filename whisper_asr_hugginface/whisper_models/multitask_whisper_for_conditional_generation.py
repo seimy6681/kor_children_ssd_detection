@@ -191,6 +191,7 @@ class MultitaskWhisperForConditionalGeneration(WhisperForConditionalGeneration):
         lm_logits = self.proj_out(outputs[0])
         
         binary_logits=None
+
         if attention_mask is not None:
             # (1) get the output_hidden_states for binary classification
             encoder_hidden = outputs.encoder_last_hidden_state # using the last encoder layer output # (B, T, D), mean pooling across time steps (B, T, D)
@@ -205,16 +206,18 @@ class MultitaskWhisperForConditionalGeneration(WhisperForConditionalGeneration):
             # (5) divide each sample's summed hidden states by the length
             encoder_output = sum_hidden / lengths # (B,D)
 
+            # encoder_output = encoder_hidden.mean(dim=1)
             # encoder_output = encoder_hidden[:,0,:]
             # (6) pass it through the classifier
-            encoder_used = encoder_output.detach() if not self.training else encoder_output
+            encoder_used = encoder_output
+            # encoder_used = encoder_output.detach() if not self.training else encoder_output
             binary_logits = self.binary_classifier(encoder_used).squeeze(-1)
             # binary_logits = self.binary_classifier(encoder_output).squeeze(-1)
 
         loss = None
         if labels is not None:
             loss_fct = CrossEntropyLoss()
-            # move labels to correct device to enable PP
+            # move labels to correct device to enable parallel processing
             labels = labels.to(lm_logits.device)
             loss = loss_fct(lm_logits.transpose(1,2), labels)
             # loss = loss_fct(lm_logits.view(-1, self.config.vocab_size), labels.reshape(-1))
@@ -229,15 +232,14 @@ class MultitaskWhisperForConditionalGeneration(WhisperForConditionalGeneration):
 
         # (8) calculate the total multitask loss
         if labels is not None and binary_labels is not None:
-            total_loss = loss + 0.3 * binary_loss
-        # print(total_loss)
-        # total_loss = loss
+            total_loss = loss + 0.15 * binary_loss
+
         if not return_dict:
             output = (lm_logits, binary_logits) + outputs[1:]
             return ((total_loss,) + output) if total_loss is not None else output
 
         return MultitaskSeq2SeqLMOutput(
-            loss=loss,
+            loss=total_loss, # MUST RETURN THE MULTITASK LOSS
             logits=lm_logits,
             past_key_values=outputs.past_key_values,
             # decoder_hidden_states=outputs.decoder_hidden_states,

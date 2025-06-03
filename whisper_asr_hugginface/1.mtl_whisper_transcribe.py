@@ -19,7 +19,7 @@ df=df.rename(columns={"speech_file":"audio"})
 # df=df.sample(n=5)
 
 # 학습한 ASR whisper 모델 checkpoint 불러오기
-MODEL_PATH = f"/data/selinawisco/whisper_finetuning_asr/multitask-whisper-small-42-3"
+MODEL_PATH = f"/data/selinawisco/whisper_finetuning_asr/multitask-whisper-small-0.15-42"
 
 # CUSTOMIZE ------------------------------------------------------------
 MODE = 'human'  # 'human'
@@ -30,7 +30,7 @@ TARGET_COL_NAME = f'{MODE}_text_jamo'
 PRED_COL_NAME = f'asr_{MODE}_transcription'
 WORD_CER_COL_NAME = f'word_{MODE}_CER'
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "0" 
+os.environ["CUDA_VISIBLE_DEVICES"] = "1" 
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -45,20 +45,31 @@ def transcribe_audio(row):
     file_path = row['audio']
     audio, sampling_rate = librosa.load(file_path, sr=16000)
     # PreProcess Audio Data
-    input_features = processor(audio, sampling_rate=sampling_rate, return_tensors="pt").input_features
-    input_features = input_features.to(device)
-
+    inputs = processor(audio, sampling_rate=sampling_rate, return_tensors="pt",return_attention_mask=True)
+    input_features = inputs.input_features.to(device)
+    attention_mask = inputs.attention_mask.to(device)
     with torch.no_grad():
+        # (1) ASR transcription
         generated_ids = model.generate(input_features)
-        # binary_logits = model(input_features).binary_logits
-        encoder_outputs = model.model.encoder(input_features)
-        pooled = torch.mean(encoder_outputs.last_hidden_state, dim=1)  # (B, D)
-        binary_logits = model.binary_classifier(pooled)
+        transcription = processor.batch_decode(generated_ids, skip_special_tokens=True)[0]
         
-    transcription = processor.batch_decode(generated_ids, skip_special_tokens=True)[0]
-    binary_logits = torch.sigmoid(binary_logits)
-    # print(binary_logits)
-    binary_preds = 1 if binary_logits > 0.5 else 0
+        # binary_logits = model(input_features).binary_logits
+        # (2) Binary classification 
+        encoder_outputs = model.model.encoder(input_features)
+        encoder_hidden = encoder_outputs.last_hidden_state
+        mask = attention_mask[:, ::2]
+        mask = mask.unsqueeze(-1).type_as(encoder_hidden)
+        masked_hidden = encoder_hidden * mask
+        sum_hidden = masked_hidden.sum(dim=1)
+        lengths = mask.sum(dim=1).clamp(min=1)
+        pooled = sum_hidden/lengths
+        
+        # pooled = torch.mean(encoder_outputs.last_hidden_state, dim=1)  # (B, D)
+        # binary_logits = model.binary_classifier(pooled)
+        binary_logits = model.binary_classifier(pooled).squeeze(-1)
+        binary_logits = torch.sigmoid(binary_logits)
+        # print(binary_logits)
+        binary_preds = 1 if binary_logits > 0.5 else 0
 
     # transcription = re.sub(r'\[PAD\]', '', transcription[0])
     tokens_to_remove = ['[PAD]', '[UNK]', '|'] # 전사 외 스페셜 토큰 제거
@@ -159,4 +170,4 @@ mtl_uar = recall_score(df['new_label'], df['mtl_binary_pred'], average='macro')
 print(f"UAR(AC): {mtl_uar}")
 print(classification_report(df['new_label'], df['pred_by_ASR']))
 
-# df.to_csv(f'/home/selinawisco/selina_main/asr/whisper-large-v3-turbo-42-eval.csv', index=False)
+df.to_csv(f'/home/selinawisco/multitask-whisper-small-42-0.15-eval.csv', index=False)
