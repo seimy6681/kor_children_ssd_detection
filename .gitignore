@@ -1,0 +1,7 @@
+/asr_ssd_detection/contrastive_ssd_main/wandb
+/ac_ssd_main
+.pt
+__pycache__/
+*.pyc
+asr_ssd_main/wandb/
+/whisper_asr_huggingface/wandb/
