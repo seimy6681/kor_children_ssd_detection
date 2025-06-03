@@ -163,7 +163,7 @@ for seed in range(42, 42 + 1):
         predict_with_generate=True,
         generation_max_length=225,
         save_steps=1000,
-        eval_steps=1000,
+        eval_steps=20,
         logging_steps=25,
         dataloader_num_workers=4,
         # report_to=["tensorboard"],

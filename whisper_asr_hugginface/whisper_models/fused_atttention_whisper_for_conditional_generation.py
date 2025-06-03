@@ -238,11 +238,11 @@ class MultitaskWhisperForConditionalGeneration(WhisperGenerationMixin, WhisperPr
             loss=loss,
             logits=lm_logits,
             past_key_values=outputs.past_key_values,
-            decoder_hidden_states=outputs.decoder_hidden_states,
-            decoder_attentions=outputs.decoder_attentions,
-            cross_attentions=outputs.cross_attentions,
-            encoder_last_hidden_state=outputs.encoder_last_hidden_state,
-            encoder_hidden_states=outputs.encoder_hidden_states,
-            encoder_attentions=outputs.encoder_attentions,
+            # decoder_hidden_states=outputs.decoder_hidden_states,
+            # decoder_attentions=outputs.decoder_attentions,
+            # cross_attentions=outputs.cross_attentions,
+            # encoder_last_hidden_state=outputs.encoder_last_hidden_state,
+            # encoder_hidden_states=outputs.encoder_hidden_states,
+            # encoder_attentions=outputs.encoder_attentions,
             binary_logits=binary_logits # include the binary logits to output for compute_metrics()
         )

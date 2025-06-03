@@ -10,9 +10,9 @@ import wandb
 from transformers import GenerationConfig
 from multitask_trainer import MultitaskTrainer
 
-debugpy.listen(5678)
-print("waiting for debugger")
-debugpy.wait_for_client()
+# debugpy.listen(5678)
+# print("waiting for debugger")
+# debugpy.wait_for_client()
 # debugpy.breakpoint()
 # print('break on this line')
 
@@ -85,6 +85,8 @@ print(test[0].keys())
 from whisper_models.multitask_whisper_for_conditional_generation import MultitaskWhisperForConditionalGeneration
 # from transformers import WhisperForConditionalGeneration
 model = MultitaskWhisperForConditionalGeneration.from_pretrained('openai/whisper-small')
+# model = MultitaskWhisperForConditionalGeneration.from_pretrained('/data/selinawisco/whisper_finetuning_asr/multitask-whisper-small-42', ignore_mismatched_sizes=True)
+# model.generation_config = GenerationConfig.from_pretrained("/data/selinawisco/whisper_finetuning_asr/multitask-whisper-small-42/")
 model.generation_config = GenerationConfig.from_pretrained("openai/whisper-small")
 # model.generation_config = GenerationConfig.from_pretrained("openai/whisper-large-v3-turbo")
 # print(model.generation_config)
@@ -194,7 +196,7 @@ for seed in range(42, 42 + 1):
         
     training_args = Seq2SeqTrainingArguments(
         seed=seed,
-        output_dir=f"/data/selinawisco/whisper_finetuning_asr/multitask-whisper-small-{seed}",  # change to a repo name of your choice
+        output_dir=f"/data/selinawisco/whisper_finetuning_asr/multitask-whisper-small-0.15-{seed}",  # change to a repo name of your choice
         save_total_limit=2,
         # per_device_train_batch_size=16,
         per_device_train_batch_size=8,
@@ -218,8 +220,8 @@ for seed in range(42, 42 + 1):
         logging_steps=25,
         dataloader_num_workers=4,
         # report_to=["tensorboard"],
-        # load_best_model_at_end=False,
-        load_best_model_at_end=True,
+        load_best_model_at_end=False,
+        # load_best_model_at_end=True,
         metric_for_best_model="cer",
         greater_is_better=False,
         push_to_hub=False,
@@ -240,11 +242,12 @@ for seed in range(42, 42 + 1):
         tokenizer=processor.feature_extractor,
     )
 
-    # trainer.train(resume_from_checkpoint="/data/selinawisco/whisper_finetuning_asr/whisper-large-v3-42/checkpoint-3000")
+    # trainer.train(resume_from_checkpoint="/data/selinawisco/whisper_finetuning_asr/multitask-whisper-small-42/checkpoint-5000")
     trainer.train()
     tokenizer.save_pretrained(training_args.output_dir) 
     feature_extractor.save_pretrained(training_args.output_dir)
     model.save_pretrained(training_args.output_dir)
+    trainer.evaluate()
     
 wandb.finish()
 

@@ -23,12 +23,13 @@ MODEL_PATH = f"/data/selinawisco/whisper_finetuning_asr/whisper-large-v3-turbo-4
 # CUSTOMIZE ------------------------------------------------------------
 MODE = 'human'  # 'human'
 SEED = 45
+MODEL_TYPE = 'mtl'
 # ----------------------------------------------------------------------
 TARGET_COL_NAME = f'{MODE}_text_jamo'
 PRED_COL_NAME = f'asr_{MODE}_transcription'
 WORD_CER_COL_NAME = f'word_{MODE}_CER'
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "1" 
+os.environ["CUDA_VISIBLE_DEVICES"] = "0" 
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -55,7 +56,6 @@ def transcribe_audio(row):
     for token in tokens_to_remove:
         transcription = transcription.replace(token, '')
     
-
     return transcription
 
 
