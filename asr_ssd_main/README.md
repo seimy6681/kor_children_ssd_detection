@@ -1,7 +1,7 @@
 # asr_ssd_main
 Korean Children Speech Sound Disorder Detection using ASR
 
-This project aims to develop an effective Automatic Speech Recognition system that generates an accurate transcription of a child's speech to be used to diagnose whether he or she has a Speech Sound Disorder (SSD).
+<!-- This project aims to develop an effective Automatic Speech Recognition system that generates an accurate transcription of a child's speech to be used to diagnose whether he or she has a Speech Sound Disorder (SSD).
 
 ### 데이터셋 위치
 
@@ -19,15 +19,23 @@ shared/kochild/original/APAC
 /shared/kochild/kochild/augmented_5
 `
 ## CSV 파일
-- ~/datasets
+- ~/datasets -->
 ## Base ASR Model
 We use the baseline model Wav2Vec2CTC for ASR and aim to improve its Character Error Rate (CER) on our Korean SSD Dataset to leverage its ability to capture mispronunciations in Korean.
 
 ## Custom Models
 To improve the model's ability to recognize correct pronounciation against its incorrect pronounciations, we apply multitask learning by attaching an auxilary classification head to the model.
 
-### 공통
-`
+### ! 코드 내부에서 수정해야 할것
+- `main.py` 코드 윗부분에 DATA_PATH = 'csv와 음성 파일이 있는 폴더 경로'를 변경해주세요.
+
+## 학습 방법
+``` shell
+./run.sh
+```
+
+### run.sh 관련 (베이스라인 모델 실행 argument)
+```
 CUDA_VISIBLE_DEVICES=0 CUDA_LAUNCH_BLOCKING=0 python main.py \
 --epochs 30 \
 --batch_size 8 \
@@ -37,14 +45,14 @@ CUDA_VISIBLE_DEVICES=0 CUDA_LAUNCH_BLOCKING=0 python main.py \
 --test_filename 'r08_APAC_KAPP_25_test.csv' \
 --num_runs 1 \ 
 --seed 42 \
-`
+```
 * num_runs : seed 로부터 연속으로 학습할 수
 
 
-##### 모델 별로 사용되는 loss feature 를 설정해야 합니다.
+##### 베이스라인 모델 외의 custom 모델 학습시 각 모델에 필요한 추가 feature 를 run.sh에서 설정해야 합니다.
 
-### 멀티테스킹 모델 
-- binary multitask (0/1 분류)
+### 멀티테스킹 모델 사용시 다
+- binary multitask (정상/비정상 분류)
     `
     --loss_feature binary_label \
     --multitask_alpha 0.15 \
