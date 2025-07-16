@@ -9,8 +9,8 @@ whisper_asr_huggingface/util/generate_forced_alignment_data.py
 실행한 후 음소단위 데이터셋과 CSV를 저장헙니다. 
 
 ### asr_ssd_main
-- Wav2Vec2 ASR 모델 코드입니다. 허깅페이스 finetuning script 에 여러 모델과 손실 함수 등을 추가하면서 main 에서 argument를 받고, argument 에 따라 해당 모델과 손실 함수등을 로딩하여 train_asr.py 안 train() 을 부르는 구조입니다. 학습 후 inference 는 저장된 모델 경로로 `inference.py` 에서 따로 실행합니다.
-학습은 `./run.sh` 실행하면 시작됩니다. 자세한 정보는 asr_ssd_main/READ.md 참고해주세요.
+- Wav2Vec2 기반 ASR 모델 코드입니다. Hugging Face의 fine-tuning 스크립트를 확장하여, 다양한 모델과 손실 함수를 선택할 수 있도록 main에서 argument를 받아 처리합니다. 선택된 구성에 따라 train_asr.py의 train() 함수가 main에서 호출되어 학습이 됩니다.
+학습은 ./run.sh 스크립트를 실행하면 시작되며, 학습된 모델은 inference.py 안에서 저장된 모델 경로를 MODEL_PATH를 지정하고 실행하면 CER 및 UAR metrics를 확인할 수 있습니다. 자세한 내용은 asr_ssd_main/README.md를 참고해주세요.
 
 ### augmentation
 - tacotron2 : tacotron2+waveglow TTS 시스템
