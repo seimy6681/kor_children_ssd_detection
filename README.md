@@ -5,7 +5,7 @@
 ```
 whisper_asr_huggingface/util/generate_forced_alignment_data.py
 ```
-입니다. 파이토치 튜토리얼 코드 기반인 `whisper_asr_huggingface/util/forced_aligner.py` 를 불러와 불러
+입니다. 파이토치 튜토리얼 기반인 코드 `whisper_asr_huggingface/util/forced_aligner.py` 를 불러와
 실행한 후 음소단위 데이터셋과 CSV를 저장헙니다. 
 
 ### asr_ssd_main
