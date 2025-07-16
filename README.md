@@ -5,8 +5,8 @@
 ```
 whisper_asr_huggingface/util/generate_forced_alignment_data.py
 ```
-입니다. 파이토치 튜토리얼 기반인 코드 `whisper_asr_huggingface/util/forced_aligner.py` 를 불러와
-실행한 후 음소단위 데이터셋과 CSV를 저장헙니다. 
+입니다. 파이토치 튜토리얼 기반인 `whisper_asr_huggingface/util/forced_aligner.py` 를 불러와
+실행하며, 코드 내부에서 지정한 각각의 경로로 음소단위 데이터셋과 CSV를 저장하는 구조입니다. 
 
 ### asr_ssd_main
 - Wav2Vec2 기반 ASR 모델 코드입니다. Hugging Face의 fine-tuning 스크립트를 확장하여, 다양한 모델과 손실 함수를 선택할 수 있도록 main에서 argument를 받아 처리합니다. 선택된 구성에 따라 train_asr.py의 train() 함수가 main에서 호출되어 학습이 됩니다.
