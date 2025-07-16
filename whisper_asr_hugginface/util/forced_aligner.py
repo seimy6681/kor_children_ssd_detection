@@ -29,8 +29,8 @@ def get_trellis(emission, tokens, blank_id=0):
     num_tokens = len(tokens)
 
     trellis = torch.zeros((num_frame, num_tokens))
-    trellis[1:, 0] = torch.cumsum(emission[1:, blank_id], 0)
-    trellis[0, 1:] = -float("inf")
+    trellis[1:, 0] = torch.cumsum(emission[1:, blank_id], 0) # [0,0]은 그대로, 토큰 1
+    trellis[0, 1:] = -float("inf") # timestep 0 에 맨앞 토큰 뒤 토큰들 나올수 없음 (토큰0 나올 확률을 엄청 낮게)
     trellis[-num_tokens + 1 :, 0] = float("inf")
 
     for t in range(num_frame - 1):
@@ -266,23 +266,25 @@ def get_forced_alignment_data(data_path, save_dir_audio, save_path_csv, test_tim
 
 
 ## 실행 코드 =================================================================================== #####
-# 데이터셋 fold 지정
-fold = 0
+# # 데이터셋 fold 지정
+# fold = 0
 
-# (2) 강제정렬에 필요한 input word-level CSV 데이터 읽어오기
-input_data_root_dir = "/data/selinawisco/kochild/five_fold_datasets/" # input 데이터 루트 디렉토리
+# # (2) 강제정렬에 필요한 input word-level CSV 데이터 읽어오기
+# input_data_root_dir = "/data/selinawisco/kochild/five_fold_datasets/" # input 데이터 루트 디렉토리
 
-# input_data_csv = f'{input_data_root_dir}test_fold_{fold}_train.csv' # train file
-input_data_csv = f'{input_data_root_dir}test_fold_{fold}.csv' # test file
-# data = f'/home/selinawisco/whisper_evals/whisper-small-fold{fold}-42-eval.csv' # transcribed test file
+# # input_data_csv = f'{input_data_root_dir}test_fold_{fold}_train.csv' # train file
+# input_data_csv = f'{input_data_root_dir}test_fold_{fold}.csv' # test file
+# # data = f'/home/selinawisco/whisper_evals/whisper-small-fold{fold}-42-eval.csv' # transcribed test file
 
-# (2) 나뉜 음소단위 음성이 저장될 폴더 이름 정의 및 생성
-output_dir = f'/data/selinawisco/kochild/forced_aligned/fold_{fold}/human-aligned-fold-{fold}-test/'
-os.makedirs(output_dir, exist_ok=True)
-# (3) 나뉜 음소단위 음성에 대한 생성할 CSV 이름
-csv_output_path = f'{output_dir}human_aligned_fold_{fold}_test.csv'
+# # (2) 나뉜 음소단위 음성이 저장될 폴더 이름 정의 및 생성
+# output_dir = f'/data/selinawisco/kochild/forced_aligned/fold_{fold}/human-aligned-fold-{fold}-test/'
+# os.makedirs(output_dir, exist_ok=True)
+# # (3) 나뉜 음소단위 음성에 대한 생성할 CSV 이름
+# csv_output_path = f'{output_dir}human_aligned_fold_{fold}_test.csv'
 
-# (4) forced alignment 함수 호출
-forced_aligned_data = get_forced_alignment_data(input_data_csv, output_dir, csv_output_path, test_time=False) # test_time=False for human_aligned
+# # (4) forced alignment 함수 호출
+# # forced_aligned_data = get_forced_alignment_data(input_data_csv, output_dir, csv_output_path, test_time=False) # test_time=False for human_aligned
 
 ## 실행 코드 =================================================================================== #####
+
+
