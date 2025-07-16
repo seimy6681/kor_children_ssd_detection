@@ -20,11 +20,13 @@ shared/kochild/original/APAC
 `
 ## CSV 파일
 - ~/datasets -->
-## Base ASR Model
-We use the baseline model Wav2Vec2CTC for ASR and aim to improve its Character Error Rate (CER) on our Korean SSD Dataset to leverage its ability to capture mispronunciations in Korean.
+## Wav2Vec2-CTC ASR 모델
+Wav2Vec2 기반 ASR 모델 코드입니다. Hugging Face의 fine-tuning 스크립트를 확장하여, 다양한 모델과 손실 함수를 선택할 수 있도록 main에서 argument를 받아 처리합니다. 선택된 구성에 따라 train_asr.py의 train() 함수가 main에서 호출되어 학습이 됩니다.
+학습은 ./run.sh 스크립트를 실행하면 시작되며, 학습된 모델은 inference.py 안에서 저장된 모델 경로를 MODEL_PATH를 지정하고 실행하면 CER 및 UAR metrics를 확인하실 수 있습니다.
+<!-- We use the baseline model Wav2Vec2CTC for ASR and aim to improve its Character Error Rate (CER) on our Korean SSD Dataset to leverage its ability to capture mispronunciations in Korean. -->
 
-## Custom Models
-To improve the model's ability to recognize correct pronounciation against its incorrect pronounciations, we apply multitask learning by attaching an auxilary classification head to the model.
+<!-- ## Custom Models
+To improve the model's ability to recognize correct pronounciation against its incorrect pronounciations, we apply multitask learning by attaching an auxilary classification head to the model. -->
 
 ### ! 코드 내부에서 수정해야 할것
 - `main.py` 코드 윗부분에 DATA_PATH = 'csv와 음성 파일이 있는 폴더 경로'를 변경해주세요.

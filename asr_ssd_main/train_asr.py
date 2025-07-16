@@ -12,7 +12,7 @@ def train_asr(model, data_collator, processor, tokenizer,feature_extractor, trai
             seed=curr_seed,
             # output_dir=f"/data/selinawisco/spring/wav2vec2-word-level-asr_{config.train_filename}_{config.loss_feature}_local_attention_only_{curr_seed}", # 모델 저장 경로 
             # output_dir=f"/data/selinawisco/spring/0508_{config.loss_feature}_embedding_{curr_seed}", # 모델 저장 경로 
-            output_dir=f"/data/selinawisco/journal_result/wav2vec2-word-level-asr-baseline_{config.train_filename}_{curr_seed}",
+            output_dir=f"/data/selinawisco/wav2vec2-word-level-asr-baseline_{config.train_filename}_{curr_seed}",
             group_by_length=True,
             # per_device_train_batch_size=1,
             per_device_train_batch_size=8,
@@ -46,7 +46,7 @@ def train_asr(model, data_collator, processor, tokenizer,feature_extractor, trai
 
     torch.cuda.empty_cache()
     trainer.train()
-    # trainer.train(resume_from_checkpoint='//data/selinawisco/asr_finetuned/joint_0.15_42/checkpoint-24100')
+    # trainer.train(resume_from_checkpoint='/data/selinawisco/wav2vec2-word-level-asr-baseline_five_fold_datasets/test_fold_0_train.csv_42')
     
     tokenizer.save_pretrained(training_args.output_dir) 
     feature_extractor.save_pretrained(training_args.output_dir)
