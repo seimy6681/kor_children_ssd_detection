@@ -53,7 +53,7 @@ CUDA_VISIBLE_DEVICES=0 CUDA_LAUNCH_BLOCKING=0 python main.py \
 
 ##### 베이스라인 모델 외의 custom 모델 학습시 각 모델에 필요한 추가 feature 를 run.sh에서 설정해야 합니다.
 
-### 멀티테스킹 모델 사용시 다
+### 멀티테스킹 모델
 - binary multitask (정상/비정상 분류)
     `
     --loss_feature binary_label \
