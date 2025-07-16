@@ -3,8 +3,6 @@ import pandas as pd
 from forced_aligner import get_forced_alignment_data
 from tqdm import tqdm
 
-fold = 1
-
 for fold in tqdm(range(1,5)):
 # 자모로 나눌 word-level CSV 경로
     word_input_dir = "/data/selinawisco/kochild/five_fold_datasets/"
