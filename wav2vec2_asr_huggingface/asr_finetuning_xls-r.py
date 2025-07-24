@@ -165,7 +165,7 @@ def compute_metrics(pred):
 # 모델 생성 ---------------------------------------
 from transformers import Wav2Vec2ForCTC
 
-for seed in range(42, 44):  # Modify this range to run the script 5 times with incrementing seeds
+for seed in range(42, 43):  # Modify this range to run the script 5 times with incrementing seeds
     print(f"Running training with seed {seed}")
 
     # Set the new seed
