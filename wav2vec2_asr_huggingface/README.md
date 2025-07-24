@@ -15,11 +15,11 @@ python asr_finetuning_xls-r.py
 ```
 python inference.py
 ```
-- finetuning 된 모델을 불러와 CER 및 UAR 계산합
+- finetuning 된 모델을 불러와 CER 및 UAR 계산
 
 
-#### asr_finetuning_xls_extract_vocab.py
-- Wav2Vec2CTC 학습에 필요한 vocabulary 생성파일.
+### asr_finetuning_xls_extract_vocab.py
+- Wav2Vec2CTC 학습에 필요한 vocabulary 생성파일
 
-#### vocab_jrnl.json
-- 위 파일 실행 결과입니다. finetuning시 vocab_jrnl.json을 로딩.
+### vocab_jrnl.json
+- 위 파일 실행 결과입니다. finetuning시 vocab_jrnl.json을 로딩
