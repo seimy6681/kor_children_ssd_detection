@@ -11,8 +11,15 @@ python asr_finetuning_xls-r.py
 - line 168 seed range 수정
 
 
+### 모델 inference 실행방법
+```
+python inference.py
+```
+- finetuning 된 모델을 불러와 CER 및 UAR 계산합
+
+
 #### asr_finetuning_xls_extract_vocab.py
-- Wav2Vec2CTC 학습에 필요한 vocabulary 생성파일입니다.
+- Wav2Vec2CTC 학습에 필요한 vocabulary 생성파일.
 
 #### vocab_jrnl.json
-- 위 파일 실행 결과입니다. finetuning시 vocab_jrnl.json을 로딩합니다.
+- 위 파일 실행 결과입니다. finetuning시 vocab_jrnl.json을 로딩.
