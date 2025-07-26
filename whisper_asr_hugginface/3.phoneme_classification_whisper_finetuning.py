@@ -1,4 +1,5 @@
-# WhisperForConditionalGeneration 대신  models/ 안에 multitask_whisper_for_conditional_generation.py 모델을 불러와 asr finetuning 한다.
+# 잘라진 음소 단위 데이터셋으로 phoneme classification 하는 모델
+# WhisperForPhonemeClassification 모델을 이용 (extends WhisperForAudioClassification)
 # https://huggingface.co/blog/fine-tune-whisper
 
 import torch
@@ -55,22 +56,28 @@ if __name__=='__main__':
     args = arg_parser(parser, arg)
 
     # CSV 경로 설정 --------------------------------------------------------------------------
-    DATA_PATH = '/data/selinawisco/kochild/wav2vec2-fold-0-phoneme_segments/'
-    train = load_dataset("csv", data_files={"train": DATA_PATH +  "fold_0_train_phoneme_segment.csv"}, delimiter=",")["train"]
+    DATA_PATH = '/data/selinawisco/phone_val_set/'
+    train = load_dataset("csv", data_files={"train": DATA_PATH +  "fold_2_3_4.csv"}, delimiter=",")["train"]
     # train = load_dataset("csv", data_files={"train": DATA_PATH + config.train_file}, delimiter=",")["train"]
     # train = load_dataset("csv", data_files={"train": DATA_PATH + "test_fold_1_train.csv"}, delimiter=",")["train"]
     # train = load_dataset("csv", data_files={"train": '/home/selinawisco/selina_main/asr/01_asr_train_sample.csv'}, delimiter=",")["train"]
-    test = load_dataset("csv", data_files={"test": DATA_PATH + "fold_0_test_phoneme_segment.csv"}, delimiter=",")["test"]
+    test = load_dataset("csv", data_files={"test": "/data/selinawisco/kochild/forced_aligned/fold_1/human_aligned_fold_1_train.csv"}, delimiter=",")["test"]
+    # test = load_dataset("csv", data_files={"test": DATA_PATH + "fold_0_test_phoneme_segment.csv"}, delimiter=",")["test"]
     # test = load_dataset("csv", data_files={"test": DATA_PATH + "test_fold_1.csv"}, delimiter=",")["test"]
     # ---------------------------------------------------------------------------------------
 
-    train = train.filter(lambda entry: entry['phoneme'] not in ['[', ']','?','ㅣ', ' ', ''])
-    test = test.filter(lambda entry: entry['phoneme'] not in ['[', ']','?','ㅣ', ' ', ''])
+    # test = test.shuffle(seed=42).select(range(10000)) ## !!!!!!!!!!!!!
+
+    train = train.filter(lambda entry: entry['fa_phoneme_label'] not in ['[', ']','?','ㅣ', ' ', ''])
+    test = test.filter(lambda entry: entry['fa_phoneme_label'] not in ['[', ']','?','ㅣ', ' ', ''])
     
-    train = train.rename_column('phoneme', 'label')
-    test = test.rename_column('phoneme', 'label')
+    train = train.rename_column('fa_phoneme_label', 'label')
+    test = test.rename_column('fa_phoneme_label', 'label')
     train = train.rename_column('segment_audio', 'audio')
     test = test.rename_column('segment_audio', 'audio')
+
+    train = train.remove_columns([col for col in train.column_names if col not in ['audio', 'label']])
+    test = test.remove_columns([col for col in test.column_names if col not in ['audio', 'label']])
 
     # train = train.remove_columns(['disease_type', 'age', 'gender','subgroup', 'id', 'textgrid_text', 'target_text','asr_text','target_text_jamo','human_text'])
     # test = test.remove_columns(['disease_type', 'age', 'gender','subgroup', 'id', 'textgrid_text', 'target_text','asr_text','target_text_jamo','human_text'])
@@ -228,7 +235,8 @@ if __name__=='__main__':
 
         training_args = Seq2SeqTrainingArguments(
             seed=seed,
-            output_dir=f"/data/selinawisco/wav2vec2-fold-0-phoneme-classification-whisper-small-fold-{seed}",  # change to a repo name of your choice
+            output_dir=f"/data/selinawisco/phoneme-classification-fold-2-3-4-whisper-small-{seed}",  # change to a repo name of your choice
+            # output_dir=f"/data/selinawisco/wav2vec2-fold-0-phoneme-classification-whisper-small-fold-{seed}",  # change to a repo name of your choice
             save_total_limit=2,
             # per_device_train_batch_size=16,
             per_device_train_batch_size=8,
@@ -236,7 +244,7 @@ if __name__=='__main__':
             # gradient_accumulation_steps=1,  # increase by 2x for every 2x decrease in batch size
             learning_rate=3e-4,
             warmup_steps=500,
-            max_steps=10000,
+            max_steps=5000,
             # num_train_epochs=30,
             gradient_checkpointing=False,
             fp16=True,
@@ -248,7 +256,7 @@ if __name__=='__main__':
             save_steps=1000,
             # save_steps=1000,
             # eval_steps=5000,
-            eval_steps=1000,
+            eval_steps=5000,
             logging_steps=25,
             dataloader_num_workers=4,
             # report_to=["tensorboard"],
@@ -276,9 +284,9 @@ if __name__=='__main__':
         with open(f"{training_args.output_dir}/phoneme_to_id.json", "w") as f:
             json.dump(phoneme_to_id, f, ensure_ascii=False)
         
-        # trainer.train(resume_from_checkpoint="/data/selinawisco/whisper_finetuning_asr/wav2vec2-fold-0-phoneme-classification-whisper-small-foldNone-0.15-42/checkpoint-5000")
+        trainer.train(resume_from_checkpoint="/data/selinawisco/phoneme-classification-fold-2-3-4-whisper-small-42/checkpoint-4000")
         config.save_pretrained(training_args.output_dir)
-        trainer.train()
+        # trainer.train()
         tokenizer.save_pretrained(training_args.output_dir) 
         feature_extractor.save_pretrained(training_args.output_dir)
         model.save_pretrained(training_args.output_dir)
