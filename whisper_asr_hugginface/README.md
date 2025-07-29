@@ -1,3 +1,12 @@
+- Wav2Vec2-CTC based forced alignment 실행 코드 위치는
+```
+whisper_asr_huggingface/util/generate_forced_alignment_data.py
+```
+입니다. 
+파이토치 튜토리얼 기반인 `whisper_asr_huggingface/util/forced_aligner.py` 를 불러와
+실행하며, 코드 내부에서 지정한 각각의 경로로 음소단위 데이터셋과 CSV를 저장하는 구조입니다. 
+
+
 ### Whisper + MTL 실행방법
 ```
 python 0.multitask_whisper_asr_finetuning.py
