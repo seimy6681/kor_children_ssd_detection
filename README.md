@@ -17,6 +17,7 @@ Here we show the different methodlogies by directory.
     Learning with Fused Attention for Improved ASR and Mispronunciation Detection in Children's Speech Sound Disorders)
     - ASR + Adversarial Learning with Age
     . . .
+- This is a Wav2Vec2-based ASR (Automatic Speech Recognition) model implementation. The code extends Hugging Face’s fine-tuning script to support various models and loss functions by parsing arguments in the main function. 
 - Wav2Vec2 기반 ASR 모델 코드입니다. Hugging Face의 fine-tuning 스크립트를 확장하여, 다양한 모델과 손실 함수를 선택할 수 있도록 main에서 argument를 받아 처리합니다. 선택된 구성에 따라 train_asr.py의 train() 함수가 main에서 호출되어 학습이 됩니다.
 학습은 ./run.sh 스크립트를 실행하면 시작되며, 학습된 모델은 inference.py 안에서 저장된 모델 경로를 MODEL_PATH를 지정하고 실행하면 CER 및 UAR metrics를 확인할 수 있습니다. 자세한 내용은 asr_ssd_main/README.md를 참고해주세요.
 
