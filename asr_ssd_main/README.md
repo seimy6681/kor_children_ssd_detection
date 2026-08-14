@@ -1,125 +1,13 @@
-# asr_ssd_main
-Korean Children Speech Sound Disorder Detection using ASR
+# ASR-SSD Main: Korean Children Speech Sound Disorder Detection using ASR
 
-<!-- This project aims to develop an effective Automatic Speech Recognition system that generates an accurate transcription of a child's speech to be used to diagnose whether he or she has a Speech Sound Disorder (SSD).
+This directory contains an Automatic Speech Recognition (ASR) framework built on top of **Wav2Vec2-CTC** to detect mispronunciation and Speech Sound Disorders (SSD) in Korean children's speech. The codebase extends Hugging Face fine-tuning scripts to support modular multi-task learning, attention mechanisms, and age-aware loss formulations.
 
-### 데이터셋 위치
+---
 
-## 음성파일 (NAS 서버)
-- 단어 레벨 K_APP/APAC 데이터셋 (709명)
-`
-shared/kochild/original/APAC
-`
-- 발화자 레벨 K_APP/APAC 데이터셋 
-`
-/shared/kochild/kochild/combined
-`
-- 나이 mixing 데이터셋 (augmentation by 5)
-`
-/shared/kochild/kochild/augmented_5
-`
-## CSV 파일
-- ~/datasets -->
-## Wav2Vec2-CTC ASR 모델
-Wav2Vec2 기반 ASR 모델 코드입니다. Hugging Face의 fine-tuning 스크립트를 확장하여, 다양한 모델과 손실 함수를 선택할 수 있도록 main에서 argument를 받아 처리합니다. 선택된 구성에 따라 train_asr.py의 train() 함수가 main에서 호출되어 학습이 됩니다.
-학습은 ./run.sh 스크립트를 실행하면 시작되며, 학습된 모델은 inference.py 안에서 저장된 모델 경로를 MODEL_PATH를 지정하고 실행하면 CER 및 UAR metrics를 확인하실 수 있습니다.
-<!-- We use the baseline model Wav2Vec2CTC for ASR and aim to improve its Character Error Rate (CER) on our Korean SSD Dataset to leverage its ability to capture mispronunciations in Korean. -->
+## 🛠️ Required Code Modifications Before Running
 
-<!-- ## Custom Models
-To improve the model's ability to recognize correct pronounciation against its incorrect pronounciations, we apply multitask learning by attaching an auxilary classification head to the model. -->
+Before launching training or inference, update the dataset path in `main.py`:
 
-### ! 코드 내부에서 수정해야 할것
-- `main.py` 코드 윗부분에 DATA_PATH = 'csv와 음성 파일이 있는 폴더 경로'를 변경해주세요.
-
-## 학습 방법
-``` shell
-./run.sh
-```
-
-### run.sh 관련 (베이스라인 모델 실행 argument)
-```
-CUDA_VISIBLE_DEVICES=0 CUDA_LAUNCH_BLOCKING=0 python main.py \
---epochs 30 \
---batch_size 8 \
---target 'human_text_jamo' \
---asr_mode 'human' \ 
---train_filename 'r08_APAC_KAPP_25_train.csv' \
---test_filename 'r08_APAC_KAPP_25_test.csv' \
---num_runs 1 \ 
---seed 42 \
-```
-* num_runs : seed 로부터 연속으로 학습할 수
-
-
-##### 베이스라인 모델 외의 custom 모델 학습시 각 모델에 필요한 추가 feature 를 run.sh에서 설정해야 합니다.
-
-### 멀티테스킹 모델
-- binary multitask (정상/비정상 분류)
-    `
-    --loss_feature binary_label \
-    --multitask_alpha 0.15 \
-    `
-
-- multitask (음소별 substitution/deletion/addition 오류 분류)
-    `
-    --loss_feature error_label \
-    --multitask_alpha 0.15 
-    `
-- phoneme_binary_multitask (음소별 0/1 분류)
-    `
-    --loss_feature phoneme_error_label \
-    --multitask_alpha 0.15 
-    `
-- phoneme_classifier_binary (음소별 각각 해당 음소에 대한 0/1classification)
-    `
-    --loss_feature binary_classifier_by_phoneme \
-    --multitask_alpha 0.15 
-    `
-### 어텐션 모델
-
--attended_binary_multitask
-    `
-    --attention 'single' \
-    --loss_feature binary_label \
-    --multitask_alpha 0.15 \
-    `
-
-
-### age 모델
-- age_embedding 
-     `
-     --loss_feature age_label \
-     --age_embedding \
-    `
-- age_loss_weighting (6세 이상 loss 5배)
-     `
-     --loss_feature age_label \
-     --age_loss_weighting \
-      `
-- age_classifier
-     `
-     --loss_feature age_label \
-     --multitask_alpha 0.3
-      `
-- age_adversarial
-    `
-     --adversarial \
-     --loss_feature age_label \
-     --multitask_alpha 0.3 \
-     --reverse_alpha 0.5 \
-      `
-
-
-# Evaluation 방법 
-### inference.py
-
-저장된 모델 체크포인트를 불러와 테스트셋의 있는 human_text를 각각 전사해 전체 텍스트에 대한 평균 CER을 계산하고, 타겟 전사와 비교하여 correct/mispronounced 바이너리 프레딕션을 내려 UAR을 계산합니다.
-
-- MODEL_PATH 를 저장된 모델 경로로 지정합니다.
-- MODEL_TYPE : Evaluation 하려는 모델의 이름을 지정합니다.
-- 실행 결과: CER, UAR(ASR), UAR(AC) 
-
-## command
-``` shell
-python inference.py
-```
+* Open `main.py` and modify the `DATA_PATH` variable near the top of the file:
+  ```python
+  DATA_PATH = '/path/to/your/csv_and_audio_files_directory'
